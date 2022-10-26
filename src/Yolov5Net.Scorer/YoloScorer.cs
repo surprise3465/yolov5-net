@@ -131,7 +131,7 @@ namespace Yolov5Net.Scorer
 
             var inputs = new List<NamedOnnxValue> // add image as onnx input
             {
-                NamedOnnxValue.CreateFromTensor("images", ExtractPixels(resized ?? image))
+                NamedOnnxValue.CreateFromTensor("input", ExtractPixels(resized ?? image))
             };
 
             IDisposableReadOnlyCollection<DisposableNamedOnnxValue> result = _inferenceSession.Run(inputs); // run inference

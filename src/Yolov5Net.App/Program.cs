@@ -10,9 +10,9 @@ namespace Yolov5Net.App
     {
         static void Main(string[] args)
         {
-            using var image = Image.FromFile("Assets/test.jpg");
+            using var image = Image.FromFile("Assets/P1010002.jpg");
 
-            using var scorer = new YoloScorer<YoloCocoP5Model>("Assets/Weights/yolov5n.onnx");
+            using var scorer = new YoloScorer<YoloCocoP5Model>("Assets/Weights/plate_detect.onnx");
 
             List<YoloPrediction> predictions = scorer.Predict(image);
 
@@ -22,7 +22,7 @@ namespace Yolov5Net.App
             {
                 double score = Math.Round(prediction.Score, 2);
 
-                graphics.DrawRectangles(new Pen(prediction.Label.Color, 1),
+                graphics.DrawRectangles(new Pen(prediction.Label.Color, 2),
                     new[] { prediction.Rectangle });
 
                 var (x, y) = (prediction.Rectangle.X - 3, prediction.Rectangle.Y - 23);
